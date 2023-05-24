@@ -7,10 +7,8 @@ import {store} from "./store/store";
 const JournalApp = () => {
     return (
         <Provider store={store}>
-        <section className={'flex flex-col justify-center font-thin bg-gray-900 text-yellow-400 text-center h-screen'}>
-            <div className={'flex-1'}>
+        <section className={'flex flex-col justify-center items-center font-thin bg-gray-900 text-yellow-400 text-center h-screen'}>
                 <AppRouter/>
-            </div>
         </section>
         </Provider>
     );

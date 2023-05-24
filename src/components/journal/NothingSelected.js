@@ -3,7 +3,7 @@ import {AiOutlineStar} from "react-icons/ai";
 
 const NothingSelected = () => {
     return (
-        <div className={'flex'}>
+        <div className={'flex h-full'}>
             <div className={'flex-1 flex flex-col justify-center items-center'}>
                 {/*Icon*/}
                 <AiOutlineStar className={'w-20 h-20 text-yellow-500'}/>

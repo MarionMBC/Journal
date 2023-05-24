@@ -5,12 +5,24 @@ import AuthButton from "../button/AuthButton";
 import {Link} from "react-router-dom";
 import './auth.css';
 import SocialNetworkBottom from "../button/SocialNetworkBottom";
-import {useDispatch} from "react-redux";
-import {asyncLogin, login, startGoogleLogin} from "../../actions/auth";
+import {useDispatch, useSelector} from "react-redux";
+import {signInWithEmailPassword, login, startGoogleLogin} from "../../actions/auth";
+import {uiRemoveError, uiSetError} from "../../actions/ui";
+import validator from "validator";
+import Spinner from "../spinner/Spinner";
 
+/**
+ * @author MarionMBC
+ * @version 1.0.0
+ * LoginScreen component
+ *  This component is used to login the user with email and password or with google  account
+ * @return {JSX.Element}
+ **/
 const LoginScreen = () => {
 
     const dispatch = useDispatch()
+    const {loading, msgError } = useSelector(state=> state.ui)
+
 
     const [formState, handleInputChange, , ,] = useForm({
         email: '',
@@ -38,23 +50,44 @@ const LoginScreen = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(asyncLogin(email, password))
+        if (isFormValid()) {
+            dispatch(signInWithEmailPassword(email, password))
+        }
+    }
+
+    const isFormValid = () => {
+         if (!validator.isEmail(email)) {
+            dispatch(uiSetError("Email is not valid"))
+            return false
+        } else if (!password) {
+            dispatch(uiSetError('Password is required'));
+            return false
+        }
+        dispatch(uiRemoveError())
+        return true
     }
 
     const handleGoogleLogin = () => {
-        dispatch(startGoogleLogin())
+        if (isFormValid()) {
+            dispatch(startGoogleLogin())
+        }
     }
 
+
+
+
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={''}>
             <div
-                className='rounded space-y-4 opacity-90 flex flex-col bg-white text-gray-500 font-normal p-4 sm:mx-48 md:mx-60 lg:mx-[37rem]'>
+                className='relative justify-self-center rounded space-y-4 opacity-90 flex flex-col bg-white text-gray-500 font-normal p-4 w-80 '>
                 <p className={'self-baseline text-2xl'}>Login</p>
+                {msgError && <span className={'left-15 absolute top-6 font-normal self-center text-red-500 text-[13px] '}>{msgError}</span>}
                 <InputComponent {...emailInput}/>
                 <InputComponent {...passwordInput} />
                 <p className={'underline self-end cursor-pointer transition-all hover:text-yellow-600'}>Forgot your
                     password?</p>
-                <AuthButton content='Login'/>
+                <AuthButton content='Login' handleSubmit={handleSubmit} disabled={loading}/>
                 <p>Login with social networks</p>
                 <SocialNetworkBottom action={'Sign in'} handleAction={handleGoogleLogin}/>
                 <Link to={'/auth/register'}

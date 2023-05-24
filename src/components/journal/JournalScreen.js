@@ -1,17 +1,19 @@
 import React from 'react';
 import SideBar from "./SideBar";
-import { show} from "../../selectors/showSideBar";
-import {GiHamburgerMenu} from "react-icons/gi";
 import NothingSelected from "./NothingSelected";
 import NoteScreen from "../notes/NoteScreen";
-const JournalScreen = () => {
-    return (
-        <div className={'relative flex h-screen animate__animated'}>
-            <SideBar/>
+import {useSelector} from "react-redux";
 
-            <main className={'animate__animated w-full animate__fadeInLeft'}>
-                <NoteScreen/>
-                {/*<NothingSelected/>*/}
+const JournalScreen = () => {
+    const {notes, active} = useSelector(state => state.notes)
+
+    return (
+        <div className={'animate__animated animate__fadeIn relative w-full flex h-screen '}>
+            <SideBar/>
+            <main className={'w-full '}>
+                {active
+                    ? <NoteScreen/>
+                    : <NothingSelected/>}
             </main>
 
         </div>
