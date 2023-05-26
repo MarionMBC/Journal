@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 
 import {BiUser} from "react-icons/bi";
 import {BsFillCalendarPlusFill} from "react-icons/bs";
@@ -7,20 +7,29 @@ import './sideBar.css'
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {accountLogOut, logout} from "../../actions/auth";
-import {notesAdd} from "../../actions/notes";
-const SideBar = () => {
+import {notesAdd, notesLoad, startLoadNotes} from "../../actions/notes";
+import {loadNotes} from "../../helpers/loadNotes";
+import {MdClose} from "react-icons/md";
+const SideBar = ({handleShow}) => {
 
     const dispatch = useDispatch()
-    const {name} = useSelector(state=> state.auth)
+    const {name, uid} = useSelector(state=> state.auth)
+
     const handleLogout = () => {
         dispatch(accountLogOut())
     }
     const handleAddNote = () => {
-        dispatch(notesAdd('Crear mi app de diario', 'No sé'))
+        dispatch(notesAdd('', ''))
+        dispatch(startLoadNotes(uid))
     }
 
+
+
+
+
     return (
-        <aside className={'hidden sm:block overflow-y-auto animate__fadeInLeft h-screen bg-gray-800 w-[30rem]'} id={'sideBar'}>
+        <aside className={'hidden sm:relative sm:block overflow-y-auto animate__animated animate__faster h-screen bg-gray-800 sm:w-[30rem]'} id={'sideBar'}>
+            <MdClose id={'btn-close-menu'} onClick={handleShow} className={'hidden sm:hidden transition-all hover:text-yellow-400 hover:scale-105 animate-pulse text-white m-5 w-10 h-10 cursor-pointer hover:scale-105 hover:animate-pulse'}></MdClose>
             <div className={'flex bg-yellow-400 items-center justify-between group text-black mx-2 hover:text-white cursor-pointer transition-all rounded-e px-5 py-2 mt-2'}>
                 <div className={'flex items-center'}>
                     <BiUser className={'w-8 h-8'}/>

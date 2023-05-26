@@ -22,8 +22,8 @@ export const useForm = (initialState = {}) => {
     setFormState({ ...formState, [target.name]: target.checked })
   }
 
-  const reset = () => {
-    setFormState(initialState);
+  const reset = (newFormState = initialState) => {
+    setFormState(newFormState);
   }
 
   const handleSubmit = (e) => {

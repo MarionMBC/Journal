@@ -42,25 +42,3 @@ export const uiReducer = (state = initialState, action) => {
 
 
 
-
-
-
-
-
-
-export const uiAnimationReducer = (state = animationInitialState , action) => {
-    switch (action.type){
-        case types.uiAnimation:
-            return {
-                ...state,
-                classNames: action.payload.classNames
-            }
-        case types.uiRemoveAnimation:
-            return {
-                ...state,
-                classNames: null
-            }
-        default:
-            return state
-    }
-}

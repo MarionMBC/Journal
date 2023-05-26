@@ -8,18 +8,21 @@ import {login} from "../actions/auth";
 import Spinner from "../components/spinner/Spinner";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import {loadNotes} from "../helpers/loadNotes";
+import {notesLoad, startLoadNotes} from "../actions/notes";
 
 const AppRouter = () => {
-    const dispatch = useDispatch();
     const [checking, setChecking] = useState(true);
+    const dispatch = useDispatch();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(
-            (user) => {
+             (user) => {
                 if (user?.uid) {
                     dispatch(login(user.uid, user.displayName));
                     setIsLoggedIn(true)
+                    dispatch(startLoadNotes(user.uid))
                 } else {
                     setIsLoggedIn(false)
                 }
@@ -28,11 +31,7 @@ const AppRouter = () => {
         setChecking(false)
     }, [dispatch, setChecking, setIsLoggedIn]);
 
-    if (checking) {
-        return (
-            <Spinner/>
-        )
-    }
+
 
     const privateRoute = {
         isLoggedIn,
@@ -46,12 +45,13 @@ const AppRouter = () => {
 
 
     return (
-        <Router>
+        checking ? <Spinner/> : <Router>
             <Switch>
                 <PrivateRoute
                     exact
                     path={'/'}
                     {...privateRoute}
+
                 />
                 <PublicRoute
                     exact
@@ -65,7 +65,7 @@ const AppRouter = () => {
                     {...publicRoute}
                 />
 
-              <Redirect to={'/auth/login'}/>
+                <Redirect to={'/auth/login'}/>
             </Switch>
         </Router>
     );

@@ -68,9 +68,9 @@ const LoginScreen = () => {
     }
 
     const handleGoogleLogin = () => {
-        if (isFormValid()) {
+
             dispatch(startGoogleLogin())
-        }
+
     }
 
 

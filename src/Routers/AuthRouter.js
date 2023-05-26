@@ -10,6 +10,7 @@ const AuthRouter = () => {
     const {loading} = useSelector(ui=>ui.ui)
 
 
+
     return (
             <div className={'flex-1 animate__animated animate__fadeIn'}>
                 <h1 className={'my-10 text-3xl'}>Journal</h1>

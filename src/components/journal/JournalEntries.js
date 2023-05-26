@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import JournalEntry from "./JournalEntry";
+import {useDispatch, useSelector} from "react-redux";
+import {loadNotes} from "../../helpers/loadNotes";
+import {startLoadNotes} from "../../actions/notes";
 
 const JournalEntries = () => {
 
-    const entries = [
-        1,2,3,4,5,6,7,8,9,10
-    ]
+    const {notes} = useSelector(state=> state.notes)
     return (
         <div className={'flex mx-2 flex-col  mt-2'}>
             {
-                entries.map( entry => (
-                        <JournalEntry key={entry}/>
+                notes.map( note => (
+                        <JournalEntry {...note} key={note.id}/>
                 ))
             }
         </div>
