@@ -1,14 +1,12 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 
 import {BiUser} from "react-icons/bi";
 import {BsFillCalendarPlusFill} from "react-icons/bs";
 import JournalEntries from "./JournalEntries";
 import './sideBar.css'
-import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {accountLogOut, logout} from "../../actions/auth";
-import {notesAdd, notesLoad, startLoadNotes} from "../../actions/notes";
-import {loadNotes} from "../../helpers/loadNotes";
+import {accountLogOut} from "../../actions/auth";
+import {notesAdd, startLoadNotes} from "../../actions/notes";
 import {MdClose} from "react-icons/md";
 const SideBar = ({handleShow}) => {
 

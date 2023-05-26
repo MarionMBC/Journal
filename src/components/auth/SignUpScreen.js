@@ -6,8 +6,7 @@ import {Link} from "react-router-dom";
 import {useForm} from "../../hooks/useForm";
 import validator from 'validator'
 import {useDispatch, useSelector} from "react-redux";
-import {uiAnimation, uiRemoveError, uiSetError} from "../../actions/ui";
-import {CSSTransition} from "react-transition-group";
+import { uiRemoveError, uiSetError} from "../../actions/ui";
 import {signUpWithEmailPasswordName} from "../../actions/auth";
 
 const SignUpScreen = () => {
@@ -17,7 +16,7 @@ const SignUpScreen = () => {
 
     useEffect(() => {
         console.log(loading, msgError)
-    }, [msgError]);
+    }, [loading ,msgError]);
 
 
     const [formState, handleInputChange, , ,] = useForm({

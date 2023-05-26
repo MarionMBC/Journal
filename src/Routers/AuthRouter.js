@@ -2,12 +2,8 @@ import React from 'react';
 import {Route, Switch, Redirect} from "react-router-dom";
 import LoginScreen from "../components/auth/LoginScreen";
 import SignUpScreen from "../components/auth/SignUpScreen";
-import {useSelector} from "react-redux";
-import Spinner from "../components/spinner/Spinner";
 
 const AuthRouter = () => {
-
-    const {loading} = useSelector(ui=>ui.ui)
 
 
 

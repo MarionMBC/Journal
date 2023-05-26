@@ -1,20 +1,19 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import SideBar from "./SideBar";
 import NothingSelected from "./NothingSelected";
 import NoteScreen from "../notes/NoteScreen";
 import {useSelector} from "react-redux";
 import {AiOutlineMenu} from "react-icons/ai";
-import {MdClose} from "react-icons/md";
+
 
 const JournalScreen = () => {
-    const {notes, active} = useSelector(state => state.notes)
+    const { active} = useSelector(state => state.notes)
 
     const handleShow = () => {
 
         const sideBar = document.getElementById('sideBar')
         const btnOpenMenu = document.getElementById('btn-open-menu')
         const btnCloseMenu = document.getElementById('btn-close-menu')
-        const main = document.querySelector('main')
         sideBar.classList.toggle('hidden')
         sideBar.classList.toggle('absolute')
         //animate__fadeInLeft

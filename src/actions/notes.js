@@ -83,12 +83,12 @@ export const updateNote = (note) => {
         delete noteToFirestore.id
         await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore)
         dispatch(startLoadNotes(uid));
+        dispatch(activeNoteDelete())
         Swal.fire({
             title: 'Saved',
             text: 'Note saved successfully',
             icon: 'success',
             confirmButtonText: 'Ok',
-
 
             customClass: {
                 confirmButton: 'bg-red-500',

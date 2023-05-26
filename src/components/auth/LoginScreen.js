@@ -6,10 +6,9 @@ import {Link} from "react-router-dom";
 import './auth.css';
 import SocialNetworkBottom from "../button/SocialNetworkBottom";
 import {useDispatch, useSelector} from "react-redux";
-import {signInWithEmailPassword, login, startGoogleLogin} from "../../actions/auth";
+import {signInWithEmailPassword, startGoogleLogin} from "../../actions/auth";
 import {uiRemoveError, uiSetError} from "../../actions/ui";
 import validator from "validator";
-import Spinner from "../spinner/Spinner";
 
 /**
  * @author MarionMBC

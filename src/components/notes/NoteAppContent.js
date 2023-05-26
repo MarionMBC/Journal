@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import {useForm} from "../../hooks/useForm";
-import {useDispatch, useSelector} from "react-redux";
-import {editActiveNote, notesDelete} from "../../actions/notes";
+import {useDispatch} from "react-redux";
+import {editActiveNote} from "../../actions/notes";
 import {AiFillDelete} from "react-icons/ai";
 import {deleteNote} from "../../helpers/deleteNote";
 
@@ -27,14 +27,14 @@ const NoteAppContent = ({id, noteTitle, noteBody, noteUrl, handleUpdate}) => {
             });
             activeId.current = id
         }
-    }, [noteTitle, noteBody, reset])
+    }, [dispatch, id,noteTitle, noteBody, reset])
 
     const {title, body} = formState
 
     useEffect(() => {
         dispatch(editActiveNote(title, body))
     }, [
-        title, body
+        title, body, dispatch
     ])
 
 
@@ -48,7 +48,7 @@ const NoteAppContent = ({id, noteTitle, noteBody, noteUrl, handleUpdate}) => {
                 name={'title'}
                 value={title}
                 onChange={handleInputChange}
-                className={'w-auto lg:w-96 p-2 focus:outline-none bg-gray-800 placeholder:text-white border-none  rounded placeholder text-2xl placeholder:text-2xl'}
+                className={'w-80 lg:w-96 p-2 focus:outline-none bg-gray-800 placeholder:text-white border-none  rounded placeholder text-2xl placeholder:text-2xl'}
                 placeholder={'Some awesome title!'}></input>
 
             <textarea

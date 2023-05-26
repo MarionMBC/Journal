@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Route, BrowserRouter as Router, Switch, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect} from "react-router-dom";
 import AuthRouter from "./AuthRouter";
 import JournalScreen from "../components/journal/JournalScreen";
 import {firebase} from "../firebase/firebase-config";
@@ -8,8 +8,8 @@ import {login} from "../actions/auth";
 import Spinner from "../components/spinner/Spinner";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import {loadNotes} from "../helpers/loadNotes";
-import {notesLoad, startLoadNotes} from "../actions/notes";
+import { startLoadNotes} from "../actions/notes";
+
 
 const AppRouter = () => {
     const [checking, setChecking] = useState(true);

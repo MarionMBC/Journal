@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import {activeNote, activeNoteDelete, notesDelete, startLoadNotes} from "../actions/notes";
+import { notesDelete} from "../actions/notes";
 
 
 export const deleteNote = (dispatch) => {

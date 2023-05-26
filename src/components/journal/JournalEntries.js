@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import JournalEntry from "./JournalEntry";
-import {useDispatch, useSelector} from "react-redux";
-import {loadNotes} from "../../helpers/loadNotes";
-import {startLoadNotes} from "../../actions/notes";
+import { useSelector} from "react-redux";
 
 const JournalEntries = () => {
 
