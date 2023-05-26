@@ -79,11 +79,12 @@ export const updateNote = (note) => {
             delete note.url
         }
         const noteToFirestore = {...note}
-        console.log(noteToFirestore)
         delete noteToFirestore.id
+
         await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore)
         dispatch(startLoadNotes(uid));
         dispatch(activeNoteDelete())
+
         Swal.fire({
             title: 'Saved',
             text: 'Note saved successfully',

@@ -8,7 +8,7 @@ const NothingSelected = () => {
                 {/*Icon*/}
                 <AiOutlineStar className={'w-20 h-20 text-yellow-500'}/>
                 <p className={'text-2xl font-medium'}>Select something</p>
-                <p className={'text-xl font-normal'}>or create an entry</p>
+                <p className={'text-xl font-normal'}>or create a note</p>
             </div>
         </div>
     );
