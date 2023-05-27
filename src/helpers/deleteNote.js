@@ -1,19 +1,29 @@
 import Swal from "sweetalert2";
-import { notesDelete} from "../actions/notes";
+import { notesDelete } from "../actions/notes";
 
 
 export const deleteNote = (dispatch) => {
     Swal.fire({
-        title: 'Do you want to save the changes?',
+        title: 'Do you want to delete the note?',
         showCancelButton: true,
         confirmButtonText: 'Delete',
-        customClass: {
-            confirmButton: 'bg-yellow-400',
-            cancelButton: 'bg-yellow-400',
-            popup: 'bg-gray-800',
-        },
+        cancelButtonText: 'Cancel',
+        icon: 'warning',
+        confirmButtonColor: '#111111',
+        cancelButtonColor: '#EAB308',
+        background: '#1F2937',
+        color: '#F9FAFB'
+
     }).then((result) => {
-        dispatch(notesDelete())
-        Swal.fire('Nota eliminada!', '', 'success')
+        if (result.isConfirmed) {
+            dispatch(notesDelete())
+            Swal.fire({
+                title: 'Deleted',
+                text: 'Note deleted successfully',
+                icon: 'success',
+                confirmButtonText: 'Ok',
+
+            })
+        }
     })
 }
